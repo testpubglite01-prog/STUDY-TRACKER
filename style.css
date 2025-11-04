@@ -1,0 +1,203 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* हल्का बैकग्राउंड */
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff; /* ब्लू हेडर */
+    color: white;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+.plan-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center;
+}
+
+.day-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex-basis: calc(50% - 10px); 
+    min-width: 350px; 
+}
+
+.day-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+/* कंबाइंड डेज़ के मास्टर शेड्यूल कार्ड के लिए */
+.combined-schedule {
+    flex-basis: 100%; 
+    background-color: #e6f7ff; /* हल्का नीला बैकग्राउंड */
+    border-color: #91d5ff;
+}
+
+/* Day 19, Day 20 जैसे उप-दिनों के ट्रैकिंग कार्ड के लिए */
+.sub-day-card {
+    flex-basis: calc(50% - 10px); 
+    min-width: 300px;
+    margin-top: -10px; 
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.day-header h2, .day-header h3 {
+    color: #007bff;
+    margin: 0;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+/* प्रोग्रेस रिपोर्ट स्टाइल */
+.progress-report {
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #007bff;
+    background-color: #e9f5ff;
+    padding: 2px 8px;
+    border-radius: 4px;
+    white-space: nowrap; 
+}
+
+/* रीसेट बटन स्टाइल */
+.reset-btn {
+    background-color: #1b1c1c; 
+    color: red;
+    border: solid red;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1m;
+    transition: background-color 0.2s;
+}
+
+.reset-btn:hover {
+    background-color: black;
+}
+
+.time-slot {
+    background-color: #e9f5ff; 
+    border-left: 5px solid #007bff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 0.95em;
+    display: flex;
+    align-items: flex-start; /* चेकबॉक्स को ऊपर से शुरू करने के लिए */
+}
+
+.time-slot label {
+    display: inline;
+    cursor: pointer;
+    flex-grow: 1; 
+}
+
+.time-slot strong {
+    color: #0056b3;
+}
+
+/* ------------------------------------------- */
+/* **ग्रीन टिक के लिए 100% वर्किंग CSS** */
+/* ------------------------------------------- */
+
+.slot-checkbox {
+    /* accent-color (आधुनिक ब्राउज़र) को प्राथमिकता दें */
+    accent-color: #28a745; 
+    
+    /* डिफ़ॉल्ट लुक छिपाएं (पुराने ब्राउज़र के लिए फॉलबैक) */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    
+    width: 18px;
+    height: 18px;
+    border: 2px solid #6c757d; /* डिफ़ॉल्ट ग्रे बॉर्डर */
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; 
+    position: relative;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+/* चेक होने पर बैकग्राउंड और बॉर्डर को हरा करें */
+.slot-checkbox:checked {
+    background-color: #28a745;
+        border: 2px solid #6c757d; /* डिफ़ॉल्ट ग्रे बॉर्डर */
+    border-radius: 4px;
+}
+
+.slot-checkbox:checked::before {
+    content: '';
+    position: absolute;
+    /* ये वैल्यू V-shape को 18px बॉक्स के अंदर केंद्रित करती हैं */
+    left: 3.4px; 
+    top: 0px; 
+    bottom: 4px;
+    width: 5px; /* V की छोटी भुजा */
+    height: 9px; /* V की लंबी भुजा */
+    border: solid white;
+    border-width: 0 2.4px 2.4px 0;
+    transform: rotate(45deg); 
+}
+
+
+/* चेक होने पर लेबल को काट दें (Lock Style) */
+.slot-checkbox:checked + label {
+    text-decoration: line-through; 
+    color: #28a745;; 
+}
+
+/* ------------------------------------------- */
+
+/* डे कार्ड की स्टाइल जब सभी सेशन पूरे हो जाएँ (Day Completed) */
+.day-card.day-completed {
+    background-color: #d4edda; /* हल्का हरा */
+    border-color: #28a745; /* हरा बॉर्डर */
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+/* 'DONE' होने पर प्रोग्रेस रिपोर्ट का स्टाइल */
+.day-card.day-completed .progress-report {
+    background-color: #28a745;
+    color: white;
+}
+
+footer {
+    text-align: center;
+    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    margin-top: 30px;
+}
